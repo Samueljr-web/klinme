@@ -1,14 +1,11 @@
 package main
 
 import (
-	"context"
-	"fmt"
 	"log"
 	"net/http"
-	"os"
 
+	"github.com/Samueljr-web/klinme-api/db"
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5"
 	"github.com/joho/godotenv"
 )
 
@@ -20,14 +17,8 @@ func main() {
     }
 
     // Connect to  DB
-    dbURL := os.Getenv("DATABASE_URL")
-    conn, err := pgx.Connect(context.Background(), dbURL)
-    if err != nil {
-        log.Fatal("Failed to connect to database:", err)
-    }
-    defer conn.Close(context.Background())
-
-    fmt.Println("Connected to database!")
+      db.Connect()
+	  defer db.Close()
 
     // Gin router
     r := gin.Default()
