@@ -2,32 +2,29 @@ package main
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/Samueljr-web/klinme-api/db"
+	"github.com/Samueljr-web/klinme-api/routes"
+	"github.com/Samueljr-web/klinme-api/storage"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
 func main() {
-    // Load .env file
-    err := godotenv.Load()
-    if err != nil {
-        log.Fatal("Error loading .env file")
-    }
+	// Load .env
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
-    // Connect to  DB
-      db.Connect()
-	  defer db.Close()
+	// Connect to  DB
+	db.Connect()
+	defer db.Close()
 
-    // Gin router
-    r := gin.Default()
+	//Connect to azure
+	storage.Connect()
 
-    r.GET("/api", func(c *gin.Context) {
-        c.JSON(http.StatusOK, gin.H{
-            "message": "welcome",
-        })
-    })
-
-    r.Run(":8080")
+	r := gin.Default()
+	routes.SetupRoutes(r)
+	r.Run(":8080")
 }
