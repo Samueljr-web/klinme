@@ -26,6 +26,7 @@ Klinme helps agencies and companies clean messy CSV and Excel files using a comb
 Klinme is a SaaS platform that allows agencies and companies to upload CSV/Excel files and get them cleaned automatically. The cleaning pipeline combines rule-based logic (trim whitespace, fix date formats, remove duplicates) with AI to handle ambiguous cases.
 
 **Key Features:**
+
 - Upload CSV and Excel files (up to 10MB)
 - Automatic rule-based + AI-powered data cleaning
 - User authentication and session management via Clerk
@@ -37,15 +38,15 @@ Klinme is a SaaS platform that allows agencies and companies to upload CSV/Excel
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Backend | Go (Golang) + Gin |
-| Database | PostgreSQL (Neon) |
-| Authentication | Clerk |
-| File Storage | Azure Blob Storage |
-| Payments | Stripe (coming soon) |
-| Frontend | React + Vite |
-| Deployment | Azure (coming soon) |
+| Layer          | Technology                |
+| -------------- | ------------------------- |
+| Backend        | Go (Golang) + Gin         |
+| Database       | PostgreSQL (Neon)         |
+| Authentication | Clerk                     |
+| File Storage   | Azure Blob Storage        |
+| Payments       | Stripe (coming soon)      |
+| Frontend       | React + Vite + Typescript |
+| Deployment     | Azure (coming soon)       |
 
 ---
 
@@ -142,21 +143,22 @@ AZURE_CLEANED_CONTAINER=cleaned
 
 ### Public Routes
 
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/ping` | Health check |
-| POST | `/api/webhooks/clerk` | Clerk webhook for user creation |
+| Method | Endpoint              | Description                     |
+| ------ | --------------------- | ------------------------------- |
+| GET    | `/api/ping`           | Health check                    |
+| POST   | `/api/webhooks/clerk` | Clerk webhook for user creation |
 
 ### Protected Routes (require Bearer token)
 
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/users/:id` | Get user by ID |
-| POST | `/api/files/upload` | Upload a CSV or Excel file |
+| Method | Endpoint            | Description                |
+| ------ | ------------------- | -------------------------- |
+| GET    | `/api/users/:id`    | Get user by ID             |
+| POST   | `/api/files/upload` | Upload a CSV or Excel file |
 
 ### Authentication
 
 All protected routes require an `Authorization` header:
+
 ```
 Authorization: Bearer YOUR_CLERK_SESSION_TOKEN
 ```
