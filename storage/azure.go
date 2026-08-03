@@ -3,7 +3,7 @@ package storage
 import (
 	"context"
 	"fmt"
-	"mime/multipart"
+	"io"
 	"os"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/storage/azblob"
@@ -27,7 +27,7 @@ func UploadFile(
 	ctx context.Context,
 	containerName string,
 	fileName string,
-	file multipart.File,
+	file io.Reader,
 ) (string, error) {
 	_, err := Client.UploadStream(
 		ctx,

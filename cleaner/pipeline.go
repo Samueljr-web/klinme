@@ -16,11 +16,24 @@ func RunPipeline(records []Record, headers []string) (*CleanResult, error) {
 	fmt.Println("Running rule-based cleaning...")
 	rulesCleaned, cleanedCount := RuleBasedClean(records)
 
+	fmt.Println(" Running AI cleaning...")
+	aiCleaned, err := AIClean(rulesCleaned, headers)
+	if err != nil {
+		fmt.Println("AI cleaning failed, returning rule-based results:", err)
+		return &CleanResult{
+			Records:     rulesCleaned,
+			Headers:     headers,
+			RowsIn:      rowsIn,
+			RowsCleaned: cleanedCount,
+			RowsOut:     len(rulesCleaned),
+		}, nil
+	}
+
 	return &CleanResult{
-		Records:     rulesCleaned,
+		Records:     aiCleaned,
 		Headers:     headers,
 		RowsIn:      rowsIn,
 		RowsCleaned: cleanedCount,
-		RowsOut:     len(rulesCleaned),
+		RowsOut:     len(aiCleaned),
 	}, nil
 }
