@@ -44,8 +44,7 @@ Klinme is a SaaS platform that allows agencies and companies to upload CSV/Excel
 | Database       | PostgreSQL (Neon)         |
 | Authentication | Clerk                     |
 | File Storage   | Azure Blob Storage        |
-| Payments       | Stripe (coming soon)      |
-| Frontend       | React + Vite + Typescript |
+| Payments       | Paystack (coming soon)      |
 | Deployment     | Azure (coming soon)       |
 
 ---
@@ -233,8 +232,7 @@ Klinme uses [Clerk](https://clerk.com) for authentication.
 - [x] Azure Blob Storage integration
 - [x] Clerk authentication + webhook
 - [x] File upload endpoint
-- [ ] Rule-based data cleaning logic
-- [ ] AI-powered cleaning integration
-- [ ] Stripe subscription + usage limits
-- [ ] React frontend
+- [x] Rule-based data cleaning logic
+- [x] AI-powered cleaning integration
+- [ ] Paystack subscription + usage limits
 - [ ] Production deployment
